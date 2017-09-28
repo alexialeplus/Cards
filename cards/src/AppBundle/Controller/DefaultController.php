@@ -41,6 +41,7 @@ class DefaultController extends Controller
 
     /*
      * Sort cards according the sorting given by the API
+     *
     */
     public function sort($categories, $values, $cards) {
 
