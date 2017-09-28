@@ -3,4 +3,24 @@
 {% block title %} Résultats {% endblock %}
 
 {% block body %}
+	<div>
+		<p> Ordre des catégories : </p>
+		<ol>
+			{% for category in categories %}
+				<li> {{ category }} </li>
+			{% endfor %}
+		</ol>
+		<p> Ordre des valeurs : </p>
+		<ol>
+			{% for value in values %}
+				<li> {{ value }} </li>
+			{% endfor %}
+		</ol>
+		<p> Résultats des cartes triées : </p>
+		<ol>
+			{% for card in cards %}
+				<li> {{ card.category }} => {{ card.value }} </li>
+			{% endfor %}
+		</ol>
+	</div>
 {% endblock %}
