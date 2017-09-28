@@ -30,7 +30,7 @@ class DefaultController extends Controller
         $results = json_decode($results, true);
         $results = $results['data'];
 
-        $sortedCards = $this->tri($results['categoryOrder'], $results['valueOrder'], $results['cards']);
+        $sortedCards = $this->sort($results['categoryOrder'], $results['valueOrder'], $results['cards']);
 
 
         return $this->render('AppBundle:home:show.html.twig', array(
@@ -39,7 +39,11 @@ class DefaultController extends Controller
         );
     }
 
-    public function tri($categories, $values, $cards) {
+    /*
+     * Sort cards according the sorting given by the API
+    */
+    public function sort($categories, $values, $cards) {
+
         if (isset($categories) && isset($values) && isset($cards) && is_array($categories) && is_array($values) && is_array($cards))
         {
             $sortedCards = array();
