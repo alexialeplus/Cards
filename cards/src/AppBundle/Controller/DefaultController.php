@@ -24,8 +24,36 @@ class DefaultController extends Controller
      */
     public function call() {
 
-        dump(file_get_contents('https://recrutement.local-trust.com/test/cards/57187b7c975adeb8520a283c'));
+        $results = file_get_contents('https://recrutement.local-trust.com/test/cards/57187b7c975adeb8520a283c');
+        $results = json_decode($results, true);
+        $results = $results['data'];
+
+        $sortedCards = $this->tri($results['categoryOrder'], $results['valueOrder'], $results['cards']);
+
+        dump($sortedCards);
+        dump($results);
 
         return $this->render('AppBundle:home:show.html.twig');
+    }
+
+    public function tri($categories, $values, $cards) {
+        if (isset($categories) && isset($values) && isset($cards) && is_array($categories) && is_array($values) && is_array($cards))
+        {
+            $sortedCards = array();
+
+            foreach ($categories as $category) {
+                foreach ($values as $value) {
+                    foreach ($cards as $card) {
+                        if ($card["category"] === $category && $card["value"] === $value)
+                        {
+                            array_push($sortedCards, $card);
+                            unset($cards[$category][$value]);
+                        }
+                    }
+                }
+            }
+
+            return $sortedCards;
+        }
     }
 }
