@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class DefaultController extends Controller
 {
     /**
+     * Render the homepage
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
@@ -20,6 +21,7 @@ class DefaultController extends Controller
     }
 
     /**
+     * Call the API and get the results back
      * @Route("/new", name="call")
      */
     public function call() {
@@ -32,8 +34,6 @@ class DefaultController extends Controller
 
 
         return $this->render('AppBundle:home:show.html.twig', array(
-            'categories' => $results['categoryOrder'],
-            'values' => $results['valueOrder'],
             'cards' => $sortedCards,
             )
         );

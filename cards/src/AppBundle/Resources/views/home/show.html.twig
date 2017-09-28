@@ -3,23 +3,11 @@
 {% block title %} Résultats {% endblock %}
 
 {% block body %}
-	<div>
-		<p> Ordre des catégories : </p>
-		<ol>
-			{% for category in categories %}
-				<li> {{ category }} </li>
-			{% endfor %}
-		</ol>
-		<p> Ordre des valeurs : </p>
-		<ol>
-			{% for value in values %}
-				<li> {{ value }} </li>
-			{% endfor %}
-		</ol>
-		<p> Résultats des cartes triées : </p>
+	<div class="text-center mt-5">
+		<h5 class="mb-3"><u> Résultats des cartes triées : </u></h5>
 		<ol>
 			{% for card in cards %}
-				<li> {{ card.category }} => {{ card.value }} </li>
+				<li> {{ card.category|capitalize }} => {{ card.value|capitalize }} </li>
 			{% endfor %}
 		</ol>
 	</div>
