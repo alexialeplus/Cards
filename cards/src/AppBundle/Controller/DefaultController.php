@@ -30,10 +30,13 @@ class DefaultController extends Controller
 
         $sortedCards = $this->tri($results['categoryOrder'], $results['valueOrder'], $results['cards']);
 
-        dump($sortedCards);
-        dump($results);
 
-        return $this->render('AppBundle:home:show.html.twig');
+        return $this->render('AppBundle:home:show.html.twig', array(
+            'categories' => $results['categoryOrder'],
+            'values' => $results['valueOrder'],
+            'cards' => $sortedCards,
+            )
+        );
     }
 
     public function tri($categories, $values, $cards) {
